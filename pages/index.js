@@ -23,7 +23,7 @@ const sendMsg = async (e, value, sessionId, messageArray, setMessageArray, setVa
   setValue('')
   setMessageArray([...tmpMessageArray])
   try {
-    let results = await fetch(`http://${document.location.host}/api/watson/hello`, {
+    let results = await fetch(`${document.location.origin}/api/watson/hello`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
