@@ -7,10 +7,9 @@ import { IamAuthenticator } from 'ibm-watson/auth'
 const assistant = new AssistantV2({
   version: '2021-11-27',
   authenticator: new IamAuthenticator({
-    apikey: 'K_qPDnUu-Lcbtb6ACcn4HABOq2m58gkVD06rsrB-zXg8'
+    apikey: '2YvsmjchO_TulGpCctzUx5eMcLawQACJNNeK5pisMLRv'
   }),
-  serviceUrl: 'https://api.eu-de.assistant.watson.cloud.ibm.com',
-  disableSslVerification: true,
+  serviceUrl: 'https://api.eu-de.assistant.watson.cloud.ibm.com'
 })
 
 const sendMsg = async (e, value, sessionId, messageArray, setMessageArray, setValue) => {
@@ -37,7 +36,7 @@ const sendMsg = async (e, value, sessionId, messageArray, setMessageArray, setVa
 
     let resultsJson = await results.json();
 
-    tmpMessageArray.push(<p key={tmpMessageArray.length + 1}> {`WATSON [${(new Date()).toLocaleTimeString()}]: ${resultsJson.result}`}</p>)
+    tmpMessageArray.push(<p key={tmpMessageArray.length + 1} style={{paddingBottom: '8px'}}> {`WATSON [${(new Date()).toLocaleTimeString()}]: ${resultsJson.result}`}</p>)
     setMessageArray([...tmpMessageArray])
   } catch(err) {
     console.warn(err)
@@ -80,7 +79,7 @@ export default function Home({sessionId}) {
 
 export async function getServerSideProps(context) {
   try {
-    const result = await assistant.createSession({assistantId: 'c6dc3fee-ded8-4624-8972-5cb3dc0a4450'})
+    const result = await assistant.createSession({assistantId: 'dc1ed0bb-bb48-41ce-bd4c-dd7beda5e99d'})
     return {
       props: {
         sessionId: result.result.session_id
@@ -88,8 +87,9 @@ export async function getServerSideProps(context) {
     }
 
   } catch (err) {
-    return {
-      props: { err }
-    }
+    console.warn(err)
+  }
+  return {
+    props: {}
   }
 }
