@@ -4,7 +4,7 @@ import { IamAuthenticator } from 'ibm-watson/auth'
 const assistant = new AssistantV2({
   version: '2021-11-27',
   authenticator: new IamAuthenticator({
-    apikey: 'BDpwt6m68XDEL7i7RK6_kpS05xCwvCf-goKvo1EqgR3H'
+    apikey: 'K_qPDnUu-Lcbtb6ACcn4HABOq2m58gkVD06rsrB-zXg8'
   }),
   serviceUrl: 'https://api.eu-de.assistant.watson.cloud.ibm.com',
   disableSslVerification: true,
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const results = await assistant.message({
-        assistantId: '409436a7-ab88-46c3-93e0-b7b8dd6cd7d9',
+        assistantId: 'c6dc3fee-ded8-4624-8972-5cb3dc0a4450',
         sessionId: req.body.sessionId,
         input: {
           'message_type': 'text',
