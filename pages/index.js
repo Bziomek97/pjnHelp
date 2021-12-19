@@ -80,7 +80,7 @@ export default function Home({sessionId}) {
 
 export async function getServerSideProps(context) {
   try {
-    const result = await assistant.createSession({assistantId: 'dc1ed0bb-bb48-41ce-bd4c-dd7beda5e99d'})
+    const result = await assistant.createSession({assistantId: '409436a7-ab88-46c3-93e0-b7b8dd6cd7d9'})
     return {
       props: {
         sessionId: result.result.session_id
