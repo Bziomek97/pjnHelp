@@ -10,6 +10,7 @@ const assistant = new AssistantV2({
 })
 
 export default async function handler(req, res) {
+  console.warn(req.body)
   if (req.method === 'POST') {
     try {
       const results = await assistant.message({
@@ -17,11 +18,18 @@ export default async function handler(req, res) {
         sessionId: req.body.sessionId,
         input: {
           'message_type': 'text',
-          'text': req.body.msg
+          'text': req.body.text
         }
       })
 
-      res.status(200).json({ result: results.result.output.generic[0].text })
+      let text = results.result.output.generic[0].text + ' '
+      results.result.output.generic[1].options.forEach((el, ind, arr) => {
+        text += el.label
+        if (ind !== arr.length - 1) text += ', '
+        else text += '.'
+      })
+
+      res.status(200).json({ result: text })
     } catch (err) {
       console.error(err)
     }
